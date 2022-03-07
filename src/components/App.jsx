@@ -22,10 +22,8 @@ class App extends React.Component {
           <div className="col-md-7">
             {/* pass in something from state into VideoPlayer */}
             <VideoPlayer video={this.state} />
-            {/* <div><h5><em>videoPlayer</em> view goes here</h5></div> */}
           </div>
           <div className="col-md-5">
-            {/* <div><h5><em>videoList</em> view goes here</h5></div> */}
             <VideoList videos={exampleVideoData} />
           </div>
         </div>

@@ -8,11 +8,6 @@ var VideoList = (props) => (
     { props.videos.map(currentVideo => <VideoListEntry video={currentVideo} />) }
 
   </div>
-
-  // return a whole mama jama
-
-  // mapping the greater list
-  // all the videos dot whatever . map(alias => video list alias = {alias})
 );
 
 // PropTypes tell other developers what `props` a component expects
