@@ -5,6 +5,9 @@ import VideoPlayer from './VideoPlayer.js';
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    // set state to the currently selected video
+    this.state = exampleVideoData[0];
   }
 
   render() {
@@ -18,7 +21,7 @@ class App extends React.Component {
         <div className="row">
           <div className="col-md-7">
             {/* pass in something from state into VideoPlayer */}
-            <VideoPlayer video={exampleVideoData[0]} />
+            <VideoPlayer video={this.state} />
             {/* <div><h5><em>videoPlayer</em> view goes here</h5></div> */}
           </div>
           <div className="col-md-5">
@@ -34,3 +37,22 @@ class App extends React.Component {
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 export default App;
+
+
+// class TodoListItem extends React.Component {
+//   constructor(props) {
+//     super(props);
+
+//     // `state` is just an object literal
+//     this.state = {
+//       done: false
+//     };
+//   }
+
+//   // When a list item is clicked, we will toggle the `done`
+//   // boolean, and our component's `render` method will run again
+//   onListItemClick() {
+//     this.setState({
+//       done: !this.state.done
+//     });
+//   }
