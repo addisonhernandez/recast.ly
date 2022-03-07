@@ -1,11 +1,18 @@
-var VideoList = () => (
+import VideoListEntry from './VideoListEntry.js';
+
+// within VideoList: props is [{}, {}, {}]
+// each entry in props is an object representing all the data of a video
+var VideoList = (props) => (
   <div className="video-list">
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
+    {/* for each video in props, render a new VideoListEntry */}
+    { props.videos.map(currentVideo => <VideoListEntry video={currentVideo} />) }
+
   </div>
+
+  // return a whole mama jama
+
+  // mapping the greater list
+  // all the videos dot whatever . map(alias => video list alias = {alias})
 );
 
 // PropTypes tell other developers what `props` a component expects
