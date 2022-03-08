@@ -46,9 +46,9 @@ class App extends React.Component {
     this.props.search(query, data => debouncedSearch(data));
   }
 
-  // componentDidMount() {
-  //   this.handleSearchSubmit('good food');
-  // }
+  componentDidMount() {
+    this.handleSearchSubmit('good food');
+  }
 
   render() {
     return (

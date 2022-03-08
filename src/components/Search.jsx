@@ -3,7 +3,8 @@ var Search = (props) => {
 
   const handleChange = (event) => {
     totallyNotState = event.target.value;
-    return totallyNotState;
+
+    props.searchSubmit(totallyNotState);
   };
 
   return (
