@@ -5,7 +5,7 @@ import VideoListEntry from './VideoListEntry.js';
 var VideoList = (props) => {
   return (
     <div className="video-list">
-      {/* for each video in props, render a new VideoListEntry */}
+      <button className="autoPlay">Auto Play</button>
       {props.videos.map((currentVideo, index) => (
         <VideoListEntry
           key={currentVideo.etag} // <-- This solved that `key` warning
