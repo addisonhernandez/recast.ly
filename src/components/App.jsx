@@ -42,6 +42,10 @@ class App extends React.Component {
 
   }
 
+  componentDidMount() {
+    this.handleSearchSubmit('good food');
+  }
+
   render() {
     return (
       <div>
