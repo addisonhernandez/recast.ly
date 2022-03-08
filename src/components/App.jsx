@@ -30,21 +30,25 @@ class App extends React.Component {
    */
   handleSearchSubmit(query) {
     // search: props.searchYouTube(query, callback)
-    this.props.search(query, (data) => {
+    const debouncedSearch = _.debounce((data) => {
       // update state
       // - completely replace videos
       // - set index to 0
-      this.setState({
-        videoIndex: 0,
-        videos: data
-      });
-    });
+      if (data && data.length) {
+        this.setState({
+          videoIndex: 0,
+          videos: data
+        });
+      }
 
+    }, 500);
+
+    this.props.search(query, data => debouncedSearch(data));
   }
 
-  componentDidMount() {
-    this.handleSearchSubmit('good food');
-  }
+  // componentDidMount() {
+  //   this.handleSearchSubmit('good food');
+  // }
 
   render() {
     return (
