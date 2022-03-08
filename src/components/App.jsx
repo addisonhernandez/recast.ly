@@ -9,18 +9,37 @@ class App extends React.Component {
 
     // set state to the currently selected video
     this.state = {
-      videoIndex: 0
+      videoIndex: 0,
+      videos: exampleVideoData,
     };
-    //this.state({videoIndex: this[index?]}) set state to index on click
-    //this.setState({videoIndex: indexOf(click id index?)})
-    // how to change state on the dig down without modifying to class?
   }
 
+  /**
+   * Click event handler for clicking on a video title
+   * @param {Number} index
+   */
   handleTitleClick(index) {
-    console.log('title clicked.', index);
     this.setState({
       videoIndex: index
     });
+  }
+
+  /**
+   * Click event handler for the search bar component
+   * @param {String} query
+   */
+  handleSearchSubmit(query) {
+    // search: props.searchYouTube(query, callback)
+    this.props.search(query, (data) => {
+      // update state
+      // - completely replace videos
+      // - set index to 0
+      this.setState({
+        videoIndex: 0,
+        videos: data
+      });
+    });
+
   }
 
   render() {
@@ -28,17 +47,16 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <Search searchSubmit={(query) => this.handleSearchSubmit(query)}/>
           </div>
         </nav>
         <div className="row">
           <div className="col-md-7">
-            {/* pass in something from state into VideoPlayer */}
-            <VideoPlayer video={exampleVideoData[this.state.videoIndex]} />
+            <VideoPlayer video={this.state.videos[this.state.videoIndex]} />
           </div>
           <div className="col-md-5">
             <VideoList
-              videos={exampleVideoData}
+              videos={this.state.videos}
               titleClick={(index) => this.handleTitleClick(index)}
             />
           </div>
