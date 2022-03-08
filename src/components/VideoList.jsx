@@ -2,13 +2,25 @@ import VideoListEntry from './VideoListEntry.js';
 
 // within VideoList: props is [{}, {}, {}]
 // each entry in props is an object representing all the data of a video
-var VideoList = (props) => (
-  <div className="video-list">
-    {/* for each video in props, render a new VideoListEntry */}
-    { props.videos.map(currentVideo => <VideoListEntry video={currentVideo} />) }
+var VideoList = (props) => {
+  return (
+    <div className="video-list">
+      {/* for each video in props, render a new VideoListEntry */}
+      {props.videos.map((currentVideo, index) => (
+        <VideoListEntry
+          key={currentVideo.etag} // <-- This solved that `key` warning
+          titleClick={
+            props.titleClick ?
+              props.titleClick.bind(this, index) :
+              () => {}
+          } // <- This added the ability to select a video. Ternary to make sure we pass the mocha tests
+          video={currentVideo}
+        />
+      ))}
 
-  </div>
-);
+    </div>
+  );
+};
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
