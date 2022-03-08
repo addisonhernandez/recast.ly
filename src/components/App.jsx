@@ -2,6 +2,7 @@ import exampleVideoData from '../../../src/data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import Search from './Search.js';
+import VideoDetails from './VideoDetails.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class App extends React.Component {
    * Click event handler for clicking on a video title
    * @param {Number} index
    */
-  handleTitleClick(index) {
+
+  handleTitleClick(index) { // innerHTML = "Awesome Food Compilation | Tasty Food Videos! #7"
     this.setState({
       videoIndex: index
     });
@@ -61,6 +63,7 @@ class App extends React.Component {
         <div className="row">
           <div className="col-md-7">
             <VideoPlayer video={this.state.videos[this.state.videoIndex]} />
+            <VideoDetails video={this.state.videos[this.state.videoIndex]}/>
           </div>
           <div className="col-md-5">
             <VideoList
