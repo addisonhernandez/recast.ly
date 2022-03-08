@@ -10,14 +10,14 @@ describe ('Search', function() {
 
   var app, searchYouTubeStub;
 
-  xdescribe('when rendering live data from YouTube', function() {
+  describe('when rendering live data from YouTube', function() {
     beforeEach(function() {
       searchYouTubeStub = sinon.stub();
       searchYouTubeStub.onCall(0).yields(window.fakeVideoData);
       searchYouTubeStub.onCall(1).yields(window.moreFakeVideoData);
 
       app = renderIntoDocument(
-        <App searchYouTube={searchYouTubeStub} />
+        <App search={searchYouTubeStub} />
       );
     });
 
