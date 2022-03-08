@@ -1,13 +1,26 @@
 import exampleVideoData from '../../../src/data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
+import Search from './Search.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     // set state to the currently selected video
-    this.state = exampleVideoData[0];
+    this.state = {
+      videoIndex: 0
+    };
+    //this.state({videoIndex: this[index?]}) set state to index on click
+    //this.setState({videoIndex: indexOf(click id index?)})
+    // how to change state on the dig down without modifying to class?
+  }
+
+  handleTitleClick(index) {
+    console.log('title clicked.', index);
+    this.setState({
+      videoIndex: index
+    });
   }
 
   render() {
@@ -21,10 +34,13 @@ class App extends React.Component {
         <div className="row">
           <div className="col-md-7">
             {/* pass in something from state into VideoPlayer */}
-            <VideoPlayer video={this.state} />
+            <VideoPlayer video={exampleVideoData[this.state.videoIndex]} />
           </div>
           <div className="col-md-5">
-            <VideoList videos={exampleVideoData} />
+            <VideoList
+              videos={exampleVideoData}
+              titleClick={(index) => this.handleTitleClick(index)}
+            />
           </div>
         </div>
       </div>
@@ -35,22 +51,3 @@ class App extends React.Component {
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 export default App;
-
-
-// class TodoListItem extends React.Component {
-//   constructor(props) {
-//     super(props);
-
-//     // `state` is just an object literal
-//     this.state = {
-//       done: false
-//     };
-//   }
-
-//   // When a list item is clicked, we will toggle the `done`
-//   // boolean, and our component's `render` method will run again
-//   onListItemClick() {
-//     this.setState({
-//       done: !this.state.done
-//     });
-//   }
