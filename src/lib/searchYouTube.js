@@ -12,15 +12,72 @@ var searchYouTube = (query, callback) => {
 
   // https://www.youtube.com/results?search_query=  + 'search query'
 
-  $.ajax({
-    url: 'https://app-hrsei-api.herokuapp.com/api/recastly/videos',
-    type: 'GET',
-    data: ({ q: query }),
-    contentType: 'application/json',
-    success: callback,
-    error: (error) => console.error('Failed to fetch videos', error)
-  });
+
+
+  // $.ajax({
+  //   url: 'https://app-hrsei-api.herokuapp.com/api/recastly/videos',
+  //   type: 'GET',
+  //   data: ({ q: query }),
+  //   contentType: 'application/json',
+  //   success: callback,
+  //   error: (error) => console.error('Failed to fetch videos', error)
+  // });
+
+  //========================= Experimental Features ===========================================
+
+  const searchURL = `https://app-hrsei-api.herokuapp.com/api/recastly/videos?q=${query}`;
+  const initSettings = {
+    method: 'GET',
+    headers: {
+      Authorization: API_KEY,
+      'Content-Type': 'application/json'
+    },
+  };
+
+  fetch(searchURL, initSettings)
+    .then(response => {
+      response.json().then(data => callback(data));
+    })
+    .catch(error => console.error('Fetch failed', error));
 };
 
 export default searchYouTube;
+
+/*
+fetch('URL' [, init])
+  .then(callback)
+  .catch(error => console.error('oops', error))
+
+URL: https://www.youtube.com/results?search_query=
+
+init: custom settings object
+{
+  method: 'GET'
+  headers: {
+    authorization: API_KEY
+  }
+
+}
+  // var getData = async function() {
+  //   try {
+  //     const res = await fetch(`https://app-hrsei-api.herokuapp.com/api/recastly/videos?q=${query}`);
+  //     if (!res.ok) {
+  //       const message = 'Danger Will Robinson';
+  //       throw new Error(message);
+  //     }
+  //     const data = await res.json();
+  //     const result = {
+  //       status: res.status + '-' + res.statusText,
+  //       headers: {
+  //         "content-type": res.headers.get('Content-Type'),
+  //         "Content-Length": res.headers.get('Content-Length'),
+  //       },
+  //       data: data,
+  //     }
+
+  //     console.log('result: ', result);
+  //   }
+  // }
+
+*/
 
